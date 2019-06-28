@@ -21,6 +21,11 @@
     <tbody id="products">
     </tbody>
 </table>
+<div id="spoiler">
+<h3>Edit Product</h3>
+    <form id="edit-form">
+    </form>
+</div>
 <script>
     function ShowProducts(listProduct, tbody) {
         let data = " ";
@@ -29,7 +34,7 @@
             data += "<td>";
             data += listProduct[i];
             data += "</td>";
-            data += "<td><input type='button' value='Edit' onclick='edit("+i+")'></td>";
+            data += "<td><input type='button' value='Edit' onclick='editform("+i+")'></td>";
             data += "<td><input type='button' value='Delete' onclick='xoa("+i+")'></td>";
             data += "</tr>";
         }
@@ -47,11 +52,22 @@
         listProduct.splice(i,1);
         ShowProducts(listProduct, tbody);
     }
+    function editform(i) {
+        let value = listProduct[i];
+        let data = " ";
+            data += "<div>";
+            data += "<input type='text' id='sua' value='"+value+"'>";
+            data += "<input type='button' value='Edit' onclick='edit("+i+")'>";
+            data += "<input type='button' value='X'>";
+            data += "</div>";
+            document.getElementById("edit-form").innerHTML = data;
+    }
     function edit(i) {
-        let x = document.getElementById('NewProduct').value;
-        listProduct.splice(i,1,x);
+        let x = document.getElementById("sua").value;
+        listProduct[i] = x;
         ShowProducts(listProduct, tbody);
     }
+
 </script>
 </body>
 </html>
